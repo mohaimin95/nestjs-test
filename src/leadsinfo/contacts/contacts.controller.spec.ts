@@ -1,14 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
+import { ContactsController } from './contacts.controller';
+import { ContactsService } from './contacts.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { leadsInfoModel } from '../leadsinfo/leadsinfo.model';
-import { userModel } from './user.model';
+import { leadsInfoModel } from '../leadsinfo.model';
+import { userModel } from '../../user/user.model';
 
-describe('UserService', () => {
-  let service: UserService;
+describe('Contacts Controller', () => {
+  let controller: ContactsController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      controllers: [ContactsController],
       imports:[
         MongooseModule.forRoot('mongodb://localhost:27017/nestjs_grab',{
           useUnifiedTopology:true,
@@ -19,13 +21,13 @@ describe('UserService', () => {
           userModel
         ]),
       ],
-      providers: [UserService],
+      providers:[ContactsService]
     }).compile();
 
-    service = module.get<UserService>(UserService);
+    controller = module.get<ContactsController>(ContactsController);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(controller).toBeDefined();
   });
 });

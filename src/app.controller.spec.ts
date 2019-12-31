@@ -15,16 +15,20 @@ describe('AppController', () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
       imports:[
-        MongooseModule.forRoot('mongodb://localhost:27017/nestjs_grab'),
         UserModule,
         LeadsinfoModule,
+        MongooseModule.forRoot('mongodb://localhost:27017/nestjs_grab',{
+          useUnifiedTopology:true,
+          useNewUrlParser:true
+        }),
         MongooseModule.forFeature([
           leadsInfoModel,
           userModel
         ])],
       providers: [
         AppService,
-        UserService],
+        UserService
+      ],
     }).compile();
 
     appController = app.get<AppController>(AppController);

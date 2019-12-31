@@ -49,6 +49,4 @@ export class LeadsinfoController {
         let success = await this.leadsService.delete(id,req.user);
         return {data: success};
     }
-    
-
 }

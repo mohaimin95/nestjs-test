@@ -10,13 +10,16 @@ import { leadsInfoModel } from './leadsinfo/leadsinfo.model';
 import { userModel } from './user/user.model';
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/nestjs_grab'),
+    MongooseModule.forRoot('mongodb://localhost:27017/nestjs_grab',{
+          useUnifiedTopology:true,
+          useNewUrlParser:true
+        }),
     UserModule,
     LeadsinfoModule,
     MongooseModule.forFeature([
       leadsInfoModel,
       userModel
-    ])
+    ]),
   ],
   controllers: [AppController],
   providers: [

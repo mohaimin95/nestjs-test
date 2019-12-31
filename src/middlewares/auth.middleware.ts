@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Response,Request } from 'express';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user/user.service';
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
   constructor(private readonly userService:UserService) {}

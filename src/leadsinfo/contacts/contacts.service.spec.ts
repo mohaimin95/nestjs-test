@@ -1,11 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
+import { ContactsService } from './contacts.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { leadsInfoModel } from '../leadsinfo/leadsinfo.model';
-import { userModel } from './user.model';
+import { leadsInfoModel } from '../leadsinfo.model';
 
-describe('UserService', () => {
-  let service: UserService;
+describe('ContactsService', () => {
+  let service: ContactsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -15,14 +14,13 @@ describe('UserService', () => {
           useNewUrlParser:true
         }),
         MongooseModule.forFeature([
-          leadsInfoModel,
-          userModel
-        ]),
+          leadsInfoModel
+        ])
       ],
-      providers: [UserService],
+      providers: [ContactsService],
     }).compile();
 
-    service = module.get<UserService>(UserService);
+    service = module.get<ContactsService>(ContactsService);
   });
 
   it('should be defined', () => {
